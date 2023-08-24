@@ -1,0 +1,108 @@
+main {
+    div.flex:first-child {
+        align-items: center;
+        max-width: calc(100% - 40px);
+
+        button {
+            color: #008dcc;
+        }
+
+        h2 {
+            margin: auto 0;
+        }
+    }
+
+    .forecast {
+        padding: 0 20px;
+        
+        mat-accordion {
+            .weather-panel {
+                &-header {
+                    &-title {
+                        // color: #012839;
+                    }
+
+                    &-description {
+                        justify-content: end;
+                        align-items: center;
+                        color: #768085bb;
+
+                        img {
+                            width: 32px;
+                            margin: 0 5px;
+                        }
+                    }
+                }
+
+                &-content {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 2px;
+
+                    &-summary {
+                        grid-column-start: 1;
+                        grid-column-end: 4;
+                        // color: #012839;
+
+                        span {
+                            font-weight: 500;
+                        }
+                    }
+
+                    &-item {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        justify-content: center;
+
+                        span {
+                            width: 5px;
+                            border-radius: 5px;
+
+                            &#sun {
+                                background-color: #e2da8e;
+                            }
+                            &#wind {
+                                background-color: #9be2b3;
+                            }
+                            &#rain {
+                                background-color: #95cece;
+                            }
+                            &#uv {
+                                background-color: #e7aaa6;
+                            }
+                            &#humidity {
+                                background-color: #cca8cd;
+                            }
+                            &#pressure {
+                                background-color: #a2c79b;
+                            }
+                        }
+
+                        div {
+                            width: calc(100% - 5px);
+                            padding-left: 10px;
+
+                            p {
+                                font-size: .9rem;
+
+                                span {
+                                    font-size: .75rem;
+                                }
+                                
+                                &:first-child {
+                                    color: #768085;
+                                    font-weight: 500;
+                                    margin-bottom: 1px;
+                                }
+
+                                // &:last-child {
+                                //     color: #012839;
+                                // }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

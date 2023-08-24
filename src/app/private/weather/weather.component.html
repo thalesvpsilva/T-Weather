@@ -1,0 +1,112 @@
+<main>
+    <div class="flex search-box">
+        <app-search-input (valueSelected)="locationSelected($event)"></app-search-input>
+    </div>
+    
+    <section class="container" *ngIf="forecast$ | async as forecast; else noresults">
+    
+        <mat-card class="main-info" [ngClass]="backgroundImg(forecast)">
+            <mat-card-header class="main-info-header">
+                <mat-card-title-group>
+                    <mat-card-title class="main-info-header-title">{{ locationDesc() }}</mat-card-title>
+                    <mat-card-subtitle>{{ calcTime('dt', forecast) | date : 'shortTime' }}</mat-card-subtitle>
+                    
+                    <a mat-stroked-button [routerLink]="['./forecast']" [queryParams]="forecastQueryParams()" routerLinkActive="active">More</a>
+                </mat-card-title-group>
+            </mat-card-header>
+    
+            <mat-card-content class="flex">
+                <div class="flex weather">
+                    <div class="flex weather-degrees">
+                        <div class="weather-degrees-real">
+                            {{ forecast.current.temp | number : '1.0-0' }}<span>ºC</span>
+                        </div>
+                        <div class="weather-degrees-feels-like">
+                            Feels like <span>{{ forecast.current.feels_like | number : '1.0-0' }} ºC</span>
+                        </div>
+                        <div class="weather-degrees-min-max">
+                            <span>{{ maxDegrees(forecast.hourly) | number : '1.0-0' }} ºC</span> / <span>{{ minDegrees(forecast.hourly) | number : '1.0-0' }} ºC</span>
+                        </div>
+                    </div>
+    
+                    <div class="flex weather-info">
+                        <img [src]="weatherIcon(forecast)" [alt]="weatherDesc(forecast.current)" />
+                        <span>{{ weatherDesc(forecast.current) }}</span> 
+                    </div>
+                </div>
+    
+                <div class="flex sun" [hidden]="!showSunInfo(forecast)">
+                    <div class="flex sunrise">
+                        <img src="/assets/icons/sunrise.png" alt="Sunrise" />
+                        <span>Sunrise</span>
+                        <span>{{ calcTime('sunrise', forecast) | date : 'shortTime' }}</span>
+                    </div>
+                    <div class="flex sunset">
+                        <img src="/assets/icons/sunset.png" alt="Sunset" />
+                        <span>Sunset</span>
+                        <span>{{ calcTime('sunset', forecast) | date : 'shortTime' }}</span>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        
+        <mat-card class="details">
+            <mat-card-header>
+                <mat-card-title>Wind Speed</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="/assets/icons/wind.png" alt="Wind Speed" />
+                <p>{{ forecast.current.wind_speed }} <span>m/s</span></p>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="details">
+            <mat-card-header>
+                <mat-card-title>Rain Chance</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="/assets/icons/10.png" alt="Rain Chance" />
+                <p>{{ rainPop(forecast) | number: '1.0-0' }} <span>%</span></p>
+                <!-- <p>{{ (rainPop(forecast)) | date : 'shortTime' }}</p> -->
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="details">
+            <mat-card-header>
+                <mat-card-title>UV</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="/assets/icons/uv.png" alt="UV" />
+                <p>{{ forecast.current.uvi }}</p>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="details">
+            <mat-card-header>
+                <mat-card-title>Pressure</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="/assets/icons/pressure.png" alt="Pressure" />
+                <p>{{ forecast.current.pressure }} <span>hPa</span></p>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="details">
+            <mat-card-header>
+                <mat-card-title>Humidity</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img src="/assets/icons/humidity.png" alt="Pressure" />
+                <p>{{ forecast.current.humidity }} <span>%</span></p>
+            </mat-card-content>
+        </mat-card>
+    </section>
+    
+    <ng-template #noresults>
+        <section class="container no-results">
+            <p>
+                Please search for a valid location to be informed with the weather.
+            </p>
+        </section>
+    </ng-template>
+</main>

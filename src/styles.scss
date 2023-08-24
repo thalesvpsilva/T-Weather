@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+
+html, body { height: 100%; }
+
+html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: var(--color-blue-shadow);
+
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+}
+
+.mat-mdc-form-field-required-marker { color: transparent }
+
+// TODO:
+
+// Alterar mecanismo de vars para cores
+// Verificar responsividade
+// trocar icon do projeto
+// subir no git

@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: #c1d2d9;
+    background: linear-gradient(180deg, #e5eaec 0%, #fdfdfd 100%);
+    position: relative;
+    height: 70px;
+
+    img {
+        width: 70px;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        transition: all 2s ease-in-out;
+
+        &.login-page {
+            left: calc(50% - 35px);
+            transform: rotate(360deg);
+        }
+    }
+
+    button.logout {
+        color: #008dcc;
+    }
+}
