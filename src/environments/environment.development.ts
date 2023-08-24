@@ -1,6 +1,6 @@
 export const environment = {
     openWeather: {
         url: 'https://api.openweathermap.org/',
-        token: '7486c92faedc5e104fa04bc717230171'
+        token: '' // A API Key must be generate at https://home.openweathermap.org/api_keys
     }
 };
