@@ -27,7 +27,7 @@ export class AuthService {
         map(login => login.user == 'admin' && login.password == '123456'),
         tap((success) => {
           if (success) {
-            this._sessionStorageService.setToken('token_123');
+            this._sessionStorageService.setToken('t-weather-token');
             this.isLogged$.next(true);
           }
         })

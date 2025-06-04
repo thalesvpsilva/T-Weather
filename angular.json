@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/123_weather",
+            "outputPath": "dist/t-weather",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "123_weather:build:production"
+              "buildTarget": "t-weather:build:production"
             },
             "development": {
-              "browserTarget": "123_weather:build:development"
+              "buildTarget": "t-weather:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "123_weather:build"
+            "buildTarget": "t-weather:build"
           }
         },
         "test": {
