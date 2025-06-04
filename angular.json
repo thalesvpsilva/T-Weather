@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "123_weather": {
+    "t-weather": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -110,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
