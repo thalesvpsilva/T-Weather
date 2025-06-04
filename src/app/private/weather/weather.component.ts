@@ -9,9 +9,10 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
 
 @Component({
-  selector: 'app-weather',
-  templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+    selector: 'app-weather',
+    templateUrl: './weather.component.html',
+    styleUrls: ['./weather.component.scss'],
+    standalone: false
 })
 export class WeatherComponent implements OnInit {
 

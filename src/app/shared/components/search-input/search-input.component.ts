@@ -7,9 +7,10 @@ import { OpenWeatherService } from '../../services/open-weather.service';
 import { IGeocodingPayload } from '../../contracts/open-weather/IGeocoding';
 
 @Component({
-  selector: 'app-search-input',
-  templateUrl: './search-input.component.html',
-  styleUrls: ['./search-input.component.scss'],
+    selector: 'app-search-input',
+    templateUrl: './search-input.component.html',
+    styleUrls: ['./search-input.component.scss'],
+    standalone: false
 })
 export class SearchInputComponent implements OnInit, OnDestroy {
   

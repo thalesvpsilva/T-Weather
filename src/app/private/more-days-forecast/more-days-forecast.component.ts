@@ -8,9 +8,10 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
 
 @Component({
-  selector: 'app-more-days-forecast',
-  templateUrl: './more-days-forecast.component.html',
-  styleUrls: ['./more-days-forecast.component.scss']
+    selector: 'app-more-days-forecast',
+    templateUrl: './more-days-forecast.component.html',
+    styleUrls: ['./more-days-forecast.component.scss'],
+    standalone: false
 })
 export class MoreDaysForecastComponent implements OnInit {
   
