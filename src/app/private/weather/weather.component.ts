@@ -26,7 +26,7 @@ export class WeatherComponent implements OnInit {
     private _sessionStorageService: SessionStorageService
   ) {
     this.localOffset = new Date().getTimezoneOffset() * 60 * -1;
-    this.currentHour = new Date().getTime();
+    this.currentHour = Math.round(new Date().getTime() / 1000);
   }
 
 
@@ -49,7 +49,7 @@ export class WeatherComponent implements OnInit {
   }
 
   private _calcTime(dt: number, offset: number): number {
-    return (dt + offset - this.localOffset) * 1000;
+    return (dt + offset - this.localOffset);
   }
 
   public locationSelected(event: IGeocodingResponse): void {
@@ -79,9 +79,12 @@ export class WeatherComponent implements OnInit {
   }
 
   public rainPop(forecast: IForecastResponse): number {
-    return forecast.hourly
-      .filter(a => (this._calcTime(a.dt, forecast.timezone_offset) - this.currentHour) < 6000)
-      [0].pop ?? 0 * 100;
+    return (forecast.hourly
+        .filter(a => {
+          const nextHour = (this._calcTime(a.dt, forecast.timezone_offset) - this.currentHour)
+          return nextHour < 3600 && nextHour > 0;
+        })
+        [0]?.pop ?? 0) * 100;
   }
   
   public showSunInfo(forecast: IForecastResponse): boolean {
@@ -98,9 +101,9 @@ export class WeatherComponent implements OnInit {
 
   public calcTime(field: string, forecast: IForecastResponse): number {
     const timeObj = {
-      'dt': () => forecast.current.dt,
-      'sunrise': () => (forecast.current.sunrise ?? 0),
-      'sunset': () => (forecast.current.sunset ?? 0)
+      'dt': () => forecast.current.dt * 1000,
+      'sunrise': () => (forecast.current.sunrise ?? 0) * 1000,
+      'sunset': () => (forecast.current.sunset ?? 0) * 1000
     };
 
     return this._calcTime(timeObj[field as keyof typeof timeObj](), forecast.timezone_offset);
