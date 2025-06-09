@@ -10,16 +10,14 @@ import { MoreDaysForecastComponent } from './more-days-forecast/more-days-foreca
 
 
 @NgModule({
-  declarations: [
-    WeatherComponent,
-    MoreDaysForecastComponent
-  ],
-  imports: [
-    CommonModule,
-    PrivateRoutingModule,
-    RouterModule,
-    CoreModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        PrivateRoutingModule,
+        RouterModule,
+        CoreModule,
+        SharedModule,
+        WeatherComponent,
+        MoreDaysForecastComponent
+    ]
 })
 export class PrivateModule { }

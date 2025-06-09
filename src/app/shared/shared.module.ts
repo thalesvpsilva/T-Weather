@@ -6,15 +6,13 @@ import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
-  declarations: [
-    SearchInputComponent
-  ],
-  imports: [
-    CommonModule,
-    CoreModule
-  ],
-  exports: [
-    SearchInputComponent
-  ]
+    imports: [
+        CommonModule,
+        CoreModule,
+        SearchInputComponent
+    ],
+    exports: [
+        SearchInputComponent
+    ]
 })
 export class SharedModule { }

@@ -9,21 +9,19 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    RouterModule
-  ],
-  exports: [
-    HeaderComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        RouterModule,
+        HeaderComponent
+    ],
+    exports: [
+        HeaderComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MaterialModule
+    ]
 })
 export class CoreModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ICurrent, IForecastPayload, IForecastResponse, IWeather, Icon } from 'src/app/shared/contracts/open-weather/IForecast';
@@ -7,12 +7,16 @@ import { IGeocodingResponse } from 'src/app/shared/contracts/open-weather/IGeoco
 import { OpenWeatherService } from 'src/app/shared/services/open-weather.service';
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
+import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
+import { NgIf, NgClass, AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
+import { MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatCardContent } from '@angular/material/card';
+import { MatButton } from '@angular/material/button';
 
 @Component({
     selector: 'app-weather',
     templateUrl: './weather.component.html',
     styleUrls: ['./weather.component.scss'],
-    standalone: false
+    imports: [SearchInputComponent, NgIf, MatCard, NgClass, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatButton, RouterLinkActive, RouterLink, MatCardContent, AsyncPipe, DecimalPipe, DatePipe]
 })
 export class WeatherComponent implements OnInit {
 
