@@ -1,94 +1,89 @@
 <main>
-    <div class="flex">
-        <button mat-icon-button aria-label="Previews page" type="button" (click)="prevPage()">
-            <mat-icon>arrow_back</mat-icon>
-        </button>
+  <div class="flex">
+    <button mat-icon-button aria-label="Previews page" type="button" (click)="prevPage()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
 
-        <h2 *ngIf="geodoce">{{ locationDesc() }}</h2>
-    </div>
+    @if (geodoce) {
+      <h2>{{ locationDesc() }}</h2>
+    }
+  </div>
 
-    <section class="forecast">
-        <mat-accordion multi *ngIf="forecastResponse$ | async as forecast; else nothingToSee">
-            <mat-expansion-panel class="weather-panel" *ngFor="let daily of forecast.forecast.daily">
-              <mat-expansion-panel-header class="weather-panel-header">
-                <mat-panel-title class="weather-panel-header-title">
-                    {{ calcTime(daily.dt, forecast.forecast.timezone_offset) | date: 'E, d LLL' }}
-                </mat-panel-title>
-                <mat-panel-description class="weather-panel-header-description">
-                    {{ daily.weather[0].main }} <img [src]="weatherIcon(daily.weather)" [alt]="daily.weather[0].description" /> {{ daily.temp.max | number : '1.0-0' }} / {{ daily.temp.min | number : '1.0-0' }} ºC
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-
-              <div class="weather-panel-content">
-                <p class="weather-panel-content-summary">
-                    <span>{{ capitalize(daily.weather[0].description, true) }}</span>. {{ daily.summary }}
-                </p>
-
-                <div class="weather-panel-content-item">
-                    <span id="sun"></span>
-                    <div>
-                        <p>Sunrise - Sunset</p>
-                        <p>
-                            {{ calcTime(daily.sunrise, forecast.forecast.timezone_offset) | date: 'shortTime' }}
-                            -
-                            {{ calcTime(daily.sunset, forecast.forecast.timezone_offset) | date: 'shortTime' }}
-                        </p>
-                    </div>
+  <section class="forecast">
+    @if (forecastResponse$ | async; as forecast) {
+      <mat-accordion multi>
+        @for (daily of forecast.forecast.daily; track daily) {
+          <mat-expansion-panel class="weather-panel">
+            <mat-expansion-panel-header class="weather-panel-header">
+              <mat-panel-title class="weather-panel-header-title">
+                {{ calcTime(daily.dt, forecast.forecast.timezone_offset) | date: 'E, d LLL' }}
+              </mat-panel-title>
+              <mat-panel-description class="weather-panel-header-description">
+                {{ daily.weather[0].main }} <img [src]="weatherIcon(daily.weather)" [alt]="daily.weather[0].description" /> {{ daily.temp.max | number : '1.0-0' }} / {{ daily.temp.min | number : '1.0-0' }} ºC
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="weather-panel-content">
+              <p class="weather-panel-content-summary">
+                <span>{{ capitalize(daily.weather[0].description, true) }}</span>. {{ daily.summary }}
+              </p>
+              <div class="weather-panel-content-item">
+                <span id="sun"></span>
+                <div>
+                  <p>Sunrise - Sunset</p>
+                  <p>
+                    {{ calcTime(daily.sunrise, forecast.forecast.timezone_offset) | date: 'shortTime' }}
+                    -
+                    {{ calcTime(daily.sunset, forecast.forecast.timezone_offset) | date: 'shortTime' }}
+                  </p>
                 </div>
-
-                <div class="weather-panel-content-item">
-                    <span id="wind"></span>
-                    <div>
-                        <p>Wind Speed</p>
-                        <p>{{ daily.wind_speed }} <span>m/s</span></p>
-                    </div>
-                </div>
-
-                <div class="weather-panel-content-item">
-                    <span id="rain"></span>
-                    <div>
-                        <p>Rain Chance</p>
-                        <p>{{ (daily.pop * 100) | number: '1.0-0' }} <span>%</span></p>
-                    </div>
-                </div>
-
-                <div class="weather-panel-content-item">
-                    <span id="uv"></span>
-                    <div>
-                        <p>UV</p>
-                        <p>{{ daily.uvi }}</p>
-                    </div>
-                </div>
-
-                <div class="weather-panel-content-item">
-                    <span id="humidity"></span>
-                    <div>
-                        <p>Humidity</p>
-                        <p>{{ daily.humidity }} <span>%</span></p>
-                    </div>
-                </div>
-
-                <div class="weather-panel-content-item">
-                    <span id="pressure"></span>
-                    <div>
-                        <p>Pressure</p>
-                        <p>{{ daily.pressure }} <span>hPa</span></p>
-                    </div>
-                </div>
-
-
               </div>
-            </mat-expansion-panel>
-          
-        </mat-accordion>
-    </section>
+              <div class="weather-panel-content-item">
+                <span id="wind"></span>
+                <div>
+                  <p>Wind Speed</p>
+                  <p>{{ daily.wind_speed }} <span>m/s</span></p>
+                </div>
+              </div>
+              <div class="weather-panel-content-item">
+                <span id="rain"></span>
+                <div>
+                  <p>Rain Chance</p>
+                  <p>{{ (daily.pop * 100) | number: '1.0-0' }} <span>%</span></p>
+                </div>
+              </div>
+              <div class="weather-panel-content-item">
+                <span id="uv"></span>
+                <div>
+                  <p>UV</p>
+                  <p>{{ daily.uvi }}</p>
+                </div>
+              </div>
+              <div class="weather-panel-content-item">
+                <span id="humidity"></span>
+                <div>
+                  <p>Humidity</p>
+                  <p>{{ daily.humidity }} <span>%</span></p>
+                </div>
+              </div>
+              <div class="weather-panel-content-item">
+                <span id="pressure"></span>
+                <div>
+                  <p>Pressure</p>
+                  <p>{{ daily.pressure }} <span>hPa</span></p>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        }
+      </mat-accordion>
+    } @else {
+      <div>
+        <p>
+          Sorry, first you have to search a city!
+          <a mat-stroked-button [routerLink]="['/weather']" routerLinkActive="active">Click here</a>
+        </p>
+      </div>
+    }
+  </section>
 
-    <ng-template #nothingToSee>
-        <div>
-            <p>
-                Sorry, first you have to search a city! 
-                <a mat-stroked-button [routerLink]="['/weather']" routerLinkActive="active">Click here</a>
-            </p>
-        </div>
-    </ng-template>
 </main>

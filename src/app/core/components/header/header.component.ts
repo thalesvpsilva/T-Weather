@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
@@ -11,7 +11,7 @@ import { MatIcon } from '@angular/material/icon';
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    imports: [RouterLink, NgIf, MatIconButton, MatIcon, AsyncPipe]
+    imports: [RouterLink, MatIconButton, MatIcon, AsyncPipe]
 })
 export class HeaderComponent implements OnInit {
 

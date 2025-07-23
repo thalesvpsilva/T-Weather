@@ -8,14 +8,14 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { NgIf, NgFor, AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
 
 @Component({
     selector: 'app-more-days-forecast',
     templateUrl: './more-days-forecast.component.html',
     styleUrls: ['./more-days-forecast.component.scss'],
-    imports: [MatIconButton, MatIcon, NgIf, MatAccordion, NgFor, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription, MatButton, RouterLinkActive, RouterLink, AsyncPipe, DecimalPipe, DatePipe]
+    imports: [MatIconButton, MatIcon, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription, MatButton, RouterLinkActive, RouterLink, AsyncPipe, DecimalPipe, DatePipe]
 })
 export class MoreDaysForecastComponent implements OnInit {
   

@@ -8,7 +8,7 @@ import { OpenWeatherService } from 'src/app/shared/services/open-weather.service
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
 import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
-import { NgIf, NgClass, AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
+import { NgClass, AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
 import { MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatCardContent } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
 
@@ -16,7 +16,7 @@ import { MatButton } from '@angular/material/button';
     selector: 'app-weather',
     templateUrl: './weather.component.html',
     styleUrls: ['./weather.component.scss'],
-    imports: [SearchInputComponent, NgIf, MatCard, NgClass, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatButton, RouterLinkActive, RouterLink, MatCardContent, AsyncPipe, DecimalPipe, DatePipe]
+    imports: [SearchInputComponent, MatCard, NgClass, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatButton, RouterLinkActive, RouterLink, MatCardContent, AsyncPipe, DecimalPipe, DatePipe]
 })
 export class WeatherComponent implements OnInit {
 

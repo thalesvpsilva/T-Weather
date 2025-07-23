@@ -9,13 +9,13 @@ import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field'
 import { MatInput } from '@angular/material/input';
 import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
 import { MatIcon } from '@angular/material/icon';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-search-input',
     templateUrl: './search-input.component.html',
     styleUrls: ['./search-input.component.scss'],
-    imports: [FormsModule, MatFormField, MatLabel, MatInput, MatAutocompleteTrigger, ReactiveFormsModule, MatIcon, MatSuffix, MatAutocomplete, NgFor, MatOption, AsyncPipe]
+    imports: [FormsModule, MatFormField, MatLabel, MatInput, MatAutocompleteTrigger, ReactiveFormsModule, MatIcon, MatSuffix, MatAutocomplete, MatOption, AsyncPipe]
 })
 export class SearchInputComponent implements OnInit, OnDestroy {
   
