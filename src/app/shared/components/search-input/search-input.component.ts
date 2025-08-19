@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable, Subject, debounceTime, distinctUntilChanged, filter, map, switchMap, takeUntil } from 'rxjs';
 
@@ -24,8 +24,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
   public searchControl = new FormControl<string | IGeocodingResponse>('');
   public options?: IGeocodingResponse[];
   public filteredOptions$?: Observable<IGeocodingResponse[]>;
-
-  @Output() valueSelected = new EventEmitter<IGeocodingResponse>();
+  public valueSelected = output<IGeocodingResponse>();
 
   constructor(
     private _openWeatherService: OpenWeatherService
@@ -36,7 +35,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
     this.searchControl.valueChanges
       .pipe(
         map(value => typeof value === 'string' ? value.trim() : ''),
-        filter(value => value.length >= 4),
+        filter(value => value.length >= 3),
         debounceTime(200),
         distinctUntilChanged(),
         switchMap(value => this._filter(value)),
