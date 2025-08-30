@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -24,11 +24,11 @@ export class WeatherComponent implements OnInit {
   public currentHour: number;
   public geodoce!: IGeocodingResponse;
   public forecast$!: Observable<IForecastResponse>;
+  
+  private readonly _openWeatherService = inject(OpenWeatherService);
+  private readonly _sessionStorageService = inject(SessionStorageService);
 
-  constructor(
-    private _openWeatherService: OpenWeatherService,
-    private _sessionStorageService: SessionStorageService
-  ) {
+  constructor() {
     this.localOffset = new Date().getTimezoneOffset() * 60 * -1;
     this.currentHour = Math.round(new Date().getTime() / 1000);
   }

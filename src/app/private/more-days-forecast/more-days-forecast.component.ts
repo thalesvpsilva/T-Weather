@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -22,11 +22,12 @@ export class MoreDaysForecastComponent implements OnInit {
   public geodoce!: IGeocodingResponse;
   public forecastResponse$!: Observable<{forecast: IForecastResponse}>;
 
-  constructor(
-    private _router: Router,
-    private _activatedRoute: ActivatedRoute,
-    private _sessionStorageService: SessionStorageService
-  ) {}
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _sessionStorageService = inject(SessionStorageService);
+  private readonly _router = inject(Router);
+
+
+  constructor() {}
 
   ngOnInit(): void {
     let geocode = this._sessionStorageService.getItem('current_city');

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -20,12 +20,12 @@ export class LoginComponent implements OnInit {
   public msgError!: string;
   public showError!: boolean;
   public hide = true;
+  
+  private readonly _authService = inject(AuthService);
+  private readonly _formBuilder = inject(FormBuilder);
+  private readonly _router = inject(Router);
 
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _authService: AuthService,
-    private _router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.buildForm();
