@@ -1,9 +1,11 @@
 <header>
-    <a [routerLink]="['/']">
-        <img src="/assets/icons/123_icon.png" alt="T-Weather" [class]="{'login-page': !(logged$ | async)}"/>
-    </a>
-    
-    <button mat-icon-button class="logout" aria-label="Logout" type="button" (click)="logout()" *ngIf="(logged$ | async)">
-        <mat-icon>logout</mat-icon>
+  <a [routerLink]="['/']">
+    <img src="/assets/icons/123_icon.png" alt="T-Weather" [class]="{'login-page': !(logged$ | async)}"/>
+  </a>
+
+  @if ((logged$ | async)) {
+    <button mat-icon-button class="logout" aria-label="Logout" type="button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
     </button>
+  }
 </header>

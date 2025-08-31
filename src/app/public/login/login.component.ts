@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/services/auth.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    standalone: false
+    imports: [FormsModule, ReactiveFormsModule, MatIconButton, MatIcon, MatFormField, MatLabel, MatInput, MatSuffix, MatButton]
 })
 export class LoginComponent implements OnInit {
 
@@ -16,12 +20,12 @@ export class LoginComponent implements OnInit {
   public msgError!: string;
   public showError!: boolean;
   public hide = true;
+  
+  private readonly _authService = inject(AuthService);
+  private readonly _formBuilder = inject(FormBuilder);
+  private readonly _router = inject(Router);
 
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _authService: AuthService,
-    private _router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.buildForm();

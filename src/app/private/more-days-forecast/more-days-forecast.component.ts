@@ -1,28 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { IForecastResponse, IWeather } from 'src/app/shared/contracts/open-weather/IForecast';
 import { IGeocodingResponse } from 'src/app/shared/contracts/open-weather/IGeocoding';
 import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
 import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
+import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
 
 @Component({
     selector: 'app-more-days-forecast',
     templateUrl: './more-days-forecast.component.html',
     styleUrls: ['./more-days-forecast.component.scss'],
-    standalone: false
+    imports: [MatIconButton, MatIcon, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription, MatButton, RouterLinkActive, RouterLink, AsyncPipe, DecimalPipe, DatePipe]
 })
 export class MoreDaysForecastComponent implements OnInit {
   
   public geodoce!: IGeocodingResponse;
   public forecastResponse$!: Observable<{forecast: IForecastResponse}>;
 
-  constructor(
-    private _router: Router,
-    private _activatedRoute: ActivatedRoute,
-    private _sessionStorageService: SessionStorageService
-  ) {}
+  private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _sessionStorageService = inject(SessionStorageService);
+  private readonly _router = inject(Router);
+
+
+  constructor() {}
 
   ngOnInit(): void {
     let geocode = this._sessionStorageService.getItem('current_city');

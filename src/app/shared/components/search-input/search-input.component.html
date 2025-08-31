@@ -1,20 +1,22 @@
 
 <form class="search-form">
-    <mat-form-field appearance="outline">
-      <mat-label>Place</mat-label>
-      <input type="text"
-          placeholder="Ex.: Dublin, Ireland"
-          aria-label="Place"
-          matInput
-          [formControl]="searchControl"
-          [matAutocomplete]="auto" />
-             
-        <mat-icon matSuffix>search</mat-icon>
+  <mat-form-field appearance="outline">
+    <mat-label>Place</mat-label>
+    <input type="text"
+      placeholder="Ex.: Dublin, Ireland"
+      aria-label="Place"
+      matInput
+      [formControl]="searchControl"
+      [matAutocomplete]="auto" />
 
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="locationDesc">
-        <mat-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+    <mat-icon matSuffix>search</mat-icon>
+
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="locationDesc">
+      @for (option of filteredOptions$ | async; track option) {
+        <mat-option [value]="option">
           {{ locationDesc(option) }}
         </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
 </form>

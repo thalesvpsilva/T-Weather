@@ -8,8 +8,8 @@ describe('MoreDaysForecastComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MoreDaysForecastComponent]
-    });
+    imports: [MoreDaysForecastComponent]
+});
     fixture = TestBed.createComponent(MoreDaysForecastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,16 +1,21 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnDestroy, OnInit, output } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable, Subject, debounceTime, distinctUntilChanged, filter, map, switchMap, takeUntil } from 'rxjs';
 
 import { IGeocodingResponse } from '../../contracts/open-weather/IGeocoding';
 import { OpenWeatherService } from '../../services/open-weather.service';
 import { IGeocodingPayload } from '../../contracts/open-weather/IGeocoding';
+import { MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatAutocompleteTrigger, MatAutocomplete, MatOption } from '@angular/material/autocomplete';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-search-input',
     templateUrl: './search-input.component.html',
     styleUrls: ['./search-input.component.scss'],
-    standalone: false
+    imports: [FormsModule, MatFormField, MatLabel, MatInput, MatAutocompleteTrigger, ReactiveFormsModule, MatIcon, MatSuffix, MatAutocomplete, MatOption, AsyncPipe]
 })
 export class SearchInputComponent implements OnInit, OnDestroy {
   
@@ -19,8 +24,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
   public searchControl = new FormControl<string | IGeocodingResponse>('');
   public options?: IGeocodingResponse[];
   public filteredOptions$?: Observable<IGeocodingResponse[]>;
-
-  @Output() valueSelected = new EventEmitter<IGeocodingResponse>();
+  public valueSelected = output<IGeocodingResponse>();
 
   constructor(
     private _openWeatherService: OpenWeatherService
@@ -31,7 +35,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
     this.searchControl.valueChanges
       .pipe(
         map(value => typeof value === 'string' ? value.trim() : ''),
-        filter(value => value.length >= 4),
+        filter(value => value.length >= 3),
         debounceTime(200),
         distinctUntilChanged(),
         switchMap(value => this._filter(value)),
