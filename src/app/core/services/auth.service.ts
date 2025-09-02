@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, delay, filter, map, of, take, tap } from 'rxjs';
 
-import { IAuthPayload } from 'src/app/shared/contracts/auth/IAuthPayload';
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
+import { BehaviorSubject, Observable, delay, map, of, take, tap } from 'rxjs';
+
+import { IAuthPayload } from '../../shared/contracts/auth/IAuthPayload';
+import { SessionStorageService } from '../../shared/services/session-storage.service';
 
 
 
@@ -12,12 +13,11 @@ import { SessionStorageService } from 'src/app/shared/services/session-storage.s
 })
 export class AuthService {
 
-  public readonly isLogged$ = new BehaviorSubject<boolean>(false);
+  public readonly isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  private readonly _router = inject(Router);
+  private readonly _sessionStorageService = inject(SessionStorageService);
 
-  constructor(
-    private _router: Router,
-    private _sessionStorageService: SessionStorageService
-  ) { }
+  constructor() { }
 
   public login(payload: IAuthPayload): Observable<boolean> {
     return of(payload)
@@ -28,7 +28,7 @@ export class AuthService {
         tap((success) => {
           if (success) {
             this._sessionStorageService.setToken('t-weather-token');
-            this.isLogged$.next(true);
+            this.isLoggedIn$.next(true);
           }
         })
       );
@@ -36,13 +36,13 @@ export class AuthService {
   
   public logout(): void {
     this._sessionStorageService.clear();
-    this.isLogged$.next(false);
+    this.isLoggedIn$.next(false);
     this._router.navigateByUrl('/login');
   }
   
-  public checkLogin(): boolean {
-    const token = !!this._sessionStorageService.getToken();
-    this.isLogged$.next(token);
-    return token;
+  public isLoggedIn(): boolean {
+    const isLogged = !!this._sessionStorageService.getToken();
+    this.isLoggedIn$.next(isLogged);
+    return isLogged;
   }
 }

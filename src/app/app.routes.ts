@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { alreadyLoggedGuard, authGuard } from './core/guards/auth.guard';
+import { loggedInGuard, loggedOutGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './public/not-found/not-found.component';
 
 export const APP_ROUTES: Routes = [
@@ -8,12 +8,12 @@ export const APP_ROUTES: Routes = [
     {
       path: 'login',
       loadComponent: () => import('./public/login/login.component').then(c => c.LoginComponent),
-      canMatch: [alreadyLoggedGuard]
+      canMatch: [loggedOutGuard]
     },
     {
       path: 'weather',
       loadChildren: () => import('./private/private.routes').then(r => r.PRIVATE_ROUTES),
-      canMatch: [authGuard]
+      canMatch: [loggedInGuard]
     },
     {
       path: '**',

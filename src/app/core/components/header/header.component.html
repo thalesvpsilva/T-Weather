@@ -1,9 +1,9 @@
 <header>
   <a [routerLink]="['/']">
-    <img src="/assets/icons/123_icon.png" alt="T-Weather" [class]="{'login-page': !(logged$ | async)}"/>
+    <img src="/assets/icons/123_icon.png" alt="T-Weather" [class]="{'login-page': !(loggedIn$ | async)}"/>
   </a>
 
-  @if ((logged$ | async)) {
+  @if ((loggedIn$ | async)) {
     <button mat-icon-button class="logout" aria-label="Logout" type="button" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

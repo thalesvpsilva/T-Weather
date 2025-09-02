@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-
-import { AuthService } from '../../services/auth.service';
-import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+
+import { Observable } from 'rxjs';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-header',
@@ -15,13 +16,13 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class HeaderComponent implements OnInit {
 
-  public logged$!: Observable<boolean>;
+  public loggedIn$!: Observable<boolean>;
   private readonly _authService = inject(AuthService);
 
   constructor() {}
 
   ngOnInit(): void {
-    this.logged$ = this._authService.isLogged$;
+    this.loggedIn$ = this._authService.isLoggedIn$;
   }
 
   public logout(): void {
