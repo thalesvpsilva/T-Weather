@@ -1,15 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLinkActive, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
+import { AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
 
-import { IForecastResponse, IWeather } from 'src/app/shared/contracts/open-weather/IForecast';
-import { IGeocodingResponse } from 'src/app/shared/contracts/open-weather/IGeocoding';
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
-import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
+import { Observable } from 'rxjs';
 import { MatIconButton, MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
 import { MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
+
+import { IForecastResponse, IWeather } from '../../shared/contracts/open-weather/IForecast';
+import { IGeocodingResponse } from '../../shared/contracts/open-weather/IGeocoding';
+import { SessionStorageService } from '../../shared/services/session-storage.service';
+import { ImgAssetsUtil } from '../../shared/utils/img-assets-util';
 
 @Component({
     selector: 'app-more-days-forecast',

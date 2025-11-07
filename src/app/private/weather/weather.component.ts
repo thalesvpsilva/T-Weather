@@ -1,16 +1,17 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterLinkActive, RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { ICurrent, IForecastPayload, IForecastResponse, IWeather, Icon } from 'src/app/shared/contracts/open-weather/IForecast';
-import { IGeocodingResponse } from 'src/app/shared/contracts/open-weather/IGeocoding';
-import { OpenWeatherService } from 'src/app/shared/services/open-weather.service';
-import { SessionStorageService } from 'src/app/shared/services/session-storage.service';
-import { ImgAssetsUtil } from 'src/app/shared/utils/img-assets-util';
-import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 import { NgClass, AsyncPipe, DecimalPipe, DatePipe } from '@angular/common';
+
 import { MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSubtitle, MatCardContent } from '@angular/material/card';
 import { MatButton } from '@angular/material/button';
+import { Observable } from 'rxjs';
+
+import { ICurrent, IForecastPayload, IForecastResponse } from '../../shared/contracts/open-weather/IForecast';
+import { IGeocodingResponse } from '../../shared/contracts/open-weather/IGeocoding';
+import { OpenWeatherService } from '../../shared/services/open-weather.service';
+import { SessionStorageService } from '../../shared/services/session-storage.service';
+import { ImgAssetsUtil } from '../../shared/utils/img-assets-util';
+import { SearchInputComponent } from '../../shared/components/search-input/search-input.component';
 
 @Component({
     selector: 'app-weather',

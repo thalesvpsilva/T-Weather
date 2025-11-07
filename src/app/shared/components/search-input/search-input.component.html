@@ -7,11 +7,12 @@
       aria-label="Place"
       matInput
       [formControl]="searchControl"
-      [matAutocomplete]="auto" />
+      [matAutocomplete]="auto" 
+      />
 
     <mat-icon matSuffix>search</mat-icon>
 
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="locationDesc">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="locationDesc" (optionSelected)="optionSelected($event)">
       @for (option of filteredOptions$ | async; track option) {
         <mat-option [value]="option">
           {{ locationDesc(option) }}

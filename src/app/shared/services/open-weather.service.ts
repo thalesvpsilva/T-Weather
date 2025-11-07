@@ -1,19 +1,19 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 
-import { environment } from 'src/environments/environment.development';
 import { IGeocodingPayload, IGeocodingResponse } from '../contracts/open-weather/IGeocoding';
 import { IForecastPayload, IForecastResponse } from '../contracts/open-weather/IForecast';
+import { environment } from './../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpenWeatherService {
 
-  constructor(
-    protected httpClient: HttpClient
-  ) { }
+  protected httpClient = inject(HttpClient);
+
+  constructor() { }
 
   private _buildHttpParams(data: object): HttpParams {
     return Object

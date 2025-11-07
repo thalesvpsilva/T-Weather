@@ -16,7 +16,7 @@ describe('HeaderComponent Logged', () => {
       isLoggedIn$: new BehaviorSubject(true),
       login: jest.fn(),
       logout: jest.fn(),
-      checkLogin: jest.fn()
+      isLoggedIn: jest.fn()
     } as any;
     
     await TestBed.configureTestingModule({
@@ -106,7 +106,7 @@ describe('HeaderComponent Logged Out', () => {
       isLoggedIn$: new BehaviorSubject(false),
       login: jest.fn(),
       logout: jest.fn(),
-      checkLogin: jest.fn()
+      isLoggedIn: jest.fn()
     } as any;
     
     await TestBed.configureTestingModule({

@@ -12,9 +12,9 @@ export interface IForecastResponse {
     timezone:        string;
     timezone_offset: number;
     current:         ICurrent;
-    minutely:        IMinutely[];
+    minutely?:        IMinutely[];
     hourly:          ICurrent[];
-    daily:           IDaily[];
+    daily?:           IDaily[];
 }
 
 export interface ICurrent {
