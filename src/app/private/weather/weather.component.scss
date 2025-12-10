@@ -1,6 +1,3 @@
-@use "../../../assets/styles/mixin.scss";
-
-
 main {
     background: #c1d2d9;
     background: linear-gradient(0deg, #9da3a5 0%, #fdfdfd 100%);
@@ -33,85 +30,83 @@ main {
         }
     
         mat-card {
-            // border-radius: 0;
-            // box-shadow: none;
             background-color: #0128390f;
-
-            // &:before {
-            //     background-color: #fdfdfd7d;
-            // }
     
             &.main-info {
                 background-color: #000;
+                min-height: 350px;
+                grid-column: 1 / 4;
+                grid-row: 1 / 6;
+
                 * {
                     color: #FDFDFD;
                 }
 
-                min-height: 350px;
-                grid-column: 1 / 4;
-                grid-row: 1 / 6;
+                &::before {
+                    content: ' ';
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    opacity: .45;
+                }
     
                 &.id-01d::before {
-                    @include mixin.custom-background-image('/assets/images/01d.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/01d.jpg');
                 }
                 &.id-01n::before {
-                    @include mixin.custom-background-image('/assets/images/01n.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/01n.jpg');
                 }
                 &.id-02d::before {
-                    @include mixin.custom-background-image('/assets/images/02d.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/02d.jpg');
                 }
                 &.id-02n::before {
-                    @include mixin.custom-background-image('/assets/images/02n.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/02n.jpg');
                 }
                 &.id-03d::before {
-                    @include mixin.custom-background-image('/assets/images/03d.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/03d.jpg');
                 }
                 &.id-03n::before {
-                    @include mixin.custom-background-image('/assets/images/03n.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/03n.jpg');
                 }
                 &.id-04d::before {
-                    @include mixin.custom-background-image('/assets/images/04d.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/04d.jpg');
                 }
                 &.id-04n::before {
-                    @include mixin.custom-background-image('/assets/images/04n.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/04n.jpg');
                 }
                 &.id-09d, &.id-10d {
                     &:before {
-                        @include mixin.custom-background-image('/assets/images/09d.jpg', no-repeat, cover);
+                        background-image: url('/assets/images/09d.jpg');
                     }
                 }
                 &.id-09n, &.id-10n {
                     &:before {
-                        @include mixin.custom-background-image('/assets/images/09n.jpg', no-repeat, cover);
+                        background-image: url('/assets/images/09n.jpg');
                     }
                 }
                 &.id-11d::before {
-                    @include mixin.custom-background-image('/assets/images/11.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/11.jpg');
                 }
                 &.id-11n::before {
-                    @include mixin.custom-background-image('/assets/images/11.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/11.jpg');
                 }
                 &.id-13d::before {
-                    @include mixin.custom-background-image('/assets/images/13.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/13.jpg');
                 }
                 &.id-13n::before {
-                    @include mixin.custom-background-image('/assets/images/13.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/13.jpg');
                 }
                 &.id-50d::before {
-                    @include mixin.custom-background-image('/assets/images/50.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/50.jpg');
                 }
                 &.id-50n::before {
-                    @include mixin.custom-background-image('/assets/images/50.jpg', no-repeat, cover);
+                    background-image: url('/assets/images/50.jpg');
                 }
-
-                // *.mat-mdc-card-header-text {
-                //     width: 100%;
-
-                //     .mat-mdc-card-title {
-                //         display: flex;
-                //         justify-content: space-between;
-                //     }
-                // }
     
                 mat-card-content {
                     justify-content: space-around;
@@ -321,10 +316,6 @@ main {
                     .weather {
                         display: block;
                     }
-                }
-                
-                .sun {
-                    // display: block;
                 }
             }
         }
