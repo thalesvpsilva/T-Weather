@@ -1,5 +1,6 @@
 # T-Weather Forecast App 🚀
 
+[![Angular CI](https://github.com/thalesvpsilva/T-Weather/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/thalesvpsilva/T-Weather/actions/workflows/build.yml)
 ![Angular Version](https://img.shields.io/badge/Angular-v20-red)
 ![Node Version](https://img.shields.io/badge/Node.js-v22+-green)
 ![Test Framework](https://img.shields.io/badge/Tests-Jest-orange)
